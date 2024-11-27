@@ -1,0 +1,17 @@
+{
+  "template": "http://github.com/allenporter/cookiecutter-python",
+  "commit": "ae5501352e9a6fe363996818fc2b4c82f5816450",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "full_name": "Allen Porter",
+      "email": "allen.porter@gmail.com",
+      "github_username": "allenporter",
+      "project_name": "mcp_server_home_assistant",
+      "description": "A Model Context Protocol Server for Home Assistant",
+      "version": "0.0.1",
+      "_template": "http://github.com/allenporter/cookiecutter-python"
+    }
+  },
+  "directory": null
+}
