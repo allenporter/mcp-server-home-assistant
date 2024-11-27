@@ -27,7 +27,9 @@ async def create_server(
     @server.list_tools()  # type: ignore[no-untyped-call, misc]
     async def list_tools() -> list[Tool]:
         results = await client.send_command("mcp/tools/list")
-        return [Tool(**result) for result in results["tools"]]
+        tools = [Tool(**result) for result in results["tools"]]
+        _LOGGER.debug("Returning %d tools", len(tools))
+        return tools
 
     @server.call_tool()  # type: ignore[no-untyped-call, misc]
     async def call_tool(name: str, arguments: dict) -> list[TextContent]:
@@ -37,12 +39,16 @@ async def create_server(
     @server.list_resources()  # type: ignore[no-untyped-call, misc]
     async def list_resources() -> list[dict]:
         results = await client.send_command("mcp/resources/list")
-        return results["resources"]
+        resources = results["resources"]
+        _LOGGER.debug("Returning %d resources", len(resources))
+        return resources
 
     @server.read_resource()  # type: ignore[no-untyped-call, misc]
     async def read_resource(uri: str) -> dict:
         results = await client.send_command("mcp/resources/read", uri=uri)
-        return results["contents"]
+        contents = results["contents"]
+        _LOGGER.debug("Returning %d contents", len(contents))
+        return contents
 
     return server
 
