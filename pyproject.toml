@@ -1,3 +1,28 @@
+[project]
+name = "mcp-server-home-assistant"
+version = "0.1.0"
+description = "A Model Context Protocol Server for Home Assistant"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "click>=8.1.7",
+  "hass-client>=1.2.0",
+  "mcp>=1.0.0",
+]
+
+[tool.setuptools.package-data]
+"mcp_server_home_assistant" = ["py.typed"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["mcp_server_home_assistant"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.scripts]
+mcp-server-home-assistant = "mcp_server_home_assistant.__main__:main"
+
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
 log_level = "DEBUG"
