@@ -26,13 +26,13 @@ async def create_server(
 
     @server.list_tools()  # type: ignore[no-untyped-call, misc]
     async def list_tools() -> list[Tool]:
-        results = await client.send_command("mcp/list_tools")
-        return [Tool(**result) for result in results]
+        results = await client.send_command("mcp/tools/list")
+        return [Tool(**result) for result in results["tools"]]
 
     @server.call_tool()  # type: ignore[no-untyped-call, misc]
     async def call_tool(name: str, arguments: dict) -> list[TextContent]:
-        results = await client.send_command("mcp/call_tool")
-        return [TextContent(**result) for result in results]
+        results = await client.send_command("mcp/tools/call")
+        return [TextContent(**result) for result in results["content"]]
 
     return server
 
