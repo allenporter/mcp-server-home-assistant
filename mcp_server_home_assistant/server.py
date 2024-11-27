@@ -38,6 +38,7 @@ async def create_server(
 
     @server.list_resources()  # type: ignore[no-untyped-call, misc]
     async def list_resources() -> list[dict]:
+        _LOGGER.debug("Listing resources")
         results = await client.send_command("mcp/resources/list")
         resources = results["resources"]
         _LOGGER.debug("Returning %d resources", len(resources))
