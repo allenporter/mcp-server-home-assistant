@@ -34,6 +34,16 @@ async def create_server(
         results = await client.send_command("mcp/tools/call")
         return [TextContent(**result) for result in results["content"]]
 
+    @server.list_resources()  # type: ignore[no-untyped-call, misc]
+    async def list_resources() -> list[dict]:
+        results = await client.send_command("mcp/resources/list")
+        return results["resources"]
+
+    @server.read_resource()  # type: ignore[no-untyped-call, misc]
+    async def read_resource(uri: str) -> dict:
+        results = await client.send_command("mcp/resources/read", uri=uri)
+        return results["contents"]
+
     return server
 
 
