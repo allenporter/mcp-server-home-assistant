@@ -23,11 +23,11 @@ def main(url: str, token: str, verbose: bool) -> None:
         logging_level = logging.DEBUG
 
     if not url:
-        url = HOME_ASSISTANT_WEB_SOCKET_URL
+        url = HOME_ASSISTANT_WEB_SOCKET_URL or ""
         if not url:
             raise click.ClickException("url or environment var HOME_ASSISTANT_WEB_SOCKET_URL is required")
     if not token:
-        token = HOME_ASSISTANT_API_TOKEN
+        token = HOME_ASSISTANT_API_TOKEN or ""
         if not token:
             raise click.ClickException("token or environment var HOME_ASSISTANT_API_TOKEN is required")
 
