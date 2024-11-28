@@ -61,13 +61,13 @@ async def create_server(
         results = await client.send_command("mcp/tools/call")
         return [TextContent(**result) for result in results["content"]]
 
-    @server.list_resources()  # type: ignore[no-untyped-call, misc]
+    @server.list_prompts()  # type: ignore[no-untyped-call, misc]
     async def list_prompts() -> list[Prompt]:
         prompts = await client.send_command("mcp/prompts/list")
         _LOGGER.debug("Returning %d resources", len(prompts))
         return [Prompt.model_validate(prompt) for prompt in prompts]
 
-    @server.read_resource()  # type: ignore[no-untyped-call, misc]
+    @server.get_prompt()  # type: ignore[no-untyped-call, misc]
     async def get_prompt(name: str) -> GetPromptResult:
         result = await client.send_command("mcp/prompts/get", name=name)
         _LOGGER.debug("Returning prompt result %s", name)
