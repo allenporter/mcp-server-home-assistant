@@ -12,6 +12,8 @@ from mcp.server.stdio import stdio_server
 from mcp.types import (
     TextContent,
     Tool,
+    Prompt,
+    GetPromptResult,
 )
 
 _LOGGER = logging.getLogger(__name__)
@@ -60,19 +62,16 @@ async def create_server(
         return [TextContent(**result) for result in results["content"]]
 
     @server.list_resources()  # type: ignore[no-untyped-call, misc]
-    async def list_resources() -> list[dict]:
-        results = await client.send_command("mcp/resources/list")
-        resources = results["resources"]
-        _LOGGER.debug("Returning %d resources", len(resources))
-        return resources  # type: ignore[no-any-return]
+    async def list_prompts() -> list[Prompt]:
+        prompts = await client.send_command("mcp/prompts/list")
+        _LOGGER.debug("Returning %d resources", len(prompts))
+        return [Prompt.model_validate(prompt) for prompt in prompts]
 
     @server.read_resource()  # type: ignore[no-untyped-call, misc]
-    async def read_resource(uri: str) -> dict:
-        results = await client.send_command("mcp/resources/read", uri=str(uri))
-        contents = results["contents"]
-        content = contents[0]["text"]
-        _LOGGER.debug("Returning resource %s of length %s", uri, content)
-        return content  # type: ignore[no-any-return]
+    async def get_prompt(name: str) -> GetPromptResult:
+        result = await client.send_command("mcp/prompts/get", name=name)
+        _LOGGER.debug("Returning prompt result %s", name)
+        return GetPromptResult.model_validate(result)
 
     return server
 
