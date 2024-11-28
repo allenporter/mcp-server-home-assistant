@@ -2,6 +2,7 @@
 
 import asyncio
 import logging
+from typing import Any
 
 from aiohttp import ClientSession
 
