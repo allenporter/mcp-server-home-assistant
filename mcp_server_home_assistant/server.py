@@ -68,9 +68,9 @@ async def create_server(
         return [Prompt.model_validate(prompt) for prompt in prompts]
 
     @server.get_prompt()  # type: ignore[no-untyped-call, misc]
-    async def get_prompt(name: str) -> GetPromptResult:
+    async def get_prompt(name: str, arguments: dict[str, Any]) -> GetPromptResult:
         result = await client.send_command("mcp/prompts/get", name=name)
-        _LOGGER.debug("Returning prompt result %s", name)
+        _LOGGER.debug("Returning prompt result %s", name=name, arguments=arguments)
         return GetPromptResult.model_validate(result)
 
     return server
