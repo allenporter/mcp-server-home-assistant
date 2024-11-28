@@ -59,7 +59,9 @@ async def create_server(
 
     @server.call_tool()  # type: ignore[no-untyped-call, misc]
     async def call_tool(name: str, arguments: dict) -> list[TextContent]:
-        results = await client.send_command("mcp/tools/call")
+        results = await client.send_command(
+            "mcp/tools/call", name=name, arguments=arguments
+        )
         return [TextContent(**result) for result in results["content"]]
 
     @server.list_prompts()  # type: ignore[no-untyped-call, misc]
