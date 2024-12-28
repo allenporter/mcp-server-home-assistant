@@ -3,6 +3,8 @@
 A Model Context Protocol Server for Home Assistant. See [Model Context Protocol](https://modelcontextprotocol.io/)
 for context.
 
+The custom component required by this integration is moving to Home Assistant Core in https://github.com/home-assistant/core/pull/134122
+
 ## Usage in Claude Desktop
 
 1. Install the [home-assistant-model-context-protocol](https://github.com/allenporter/home-assistant-model-context-protocol) custom component in your Home Assistant instance
