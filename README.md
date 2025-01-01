@@ -1,4 +1,5 @@
 # mcp-server-home-assistant
+[![smithery badge](https://smithery.ai/badge/mcp-server-home-assistant)](https://smithery.ai/protocol/mcp-server-home-assistant)
 
 A Model Context Protocol Server for Home Assistant. See [Model Context Protocol](https://modelcontextprotocol.io/)
 for context.
@@ -7,6 +8,15 @@ The custom component required by this integration is moving to Home Assistant Co
 
 ## Usage in Claude Desktop
 
+### Installing via Smithery
+
+To install Home Assistant MCP Server for Claude Desktop automatically via [Smithery](https://smithery.ai/protocol/mcp-server-home-assistant):
+
+```bash
+npx @smithery/cli install mcp-server-home-assistant --client claude
+```
+
+### Manual Installation
 1. Install the [home-assistant-model-context-protocol](https://github.com/allenporter/home-assistant-model-context-protocol) custom component in your Home Assistant instance
 1. Create a [Long Lived Access Token](https://www.home-assistant.io/docs/authentication/#your-account-profile)
 1. Clone this git repo to a path like `/Users/allen/Development/mcp-server-home-assistant`
