@@ -9,6 +9,6 @@ pytest-cov==6.0.0
 pytest==8.3.4
 ruff==0.8.5
 
-mcp==1.1.2
+mcp==1.2.0
 hass-client==1.2.0
 pytest-aiohttp==1.0.5
