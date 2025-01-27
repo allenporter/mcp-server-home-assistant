@@ -1,0 +1,21 @@
+# Smithery configuration file: https://smithery.ai/docs/config#smitheryyaml
+
+startCommand:
+  type: stdio
+  configSchema:
+    # JSON Schema defining the configuration options for the MCP.
+    type: object
+    required:
+      - homeAssistantWebSocketUrl
+      - homeAssistantApiToken
+    properties:
+      homeAssistantWebSocketUrl:
+        type: string
+        description: The WebSocket URL for the Home Assistant instance.
+      homeAssistantApiToken:
+        type: string
+        description: The Long Lived Access Token for the Home Assistant API.
+  commandFunction:
+    # A function that produces the CLI command to start the MCP on stdio.
+    |-
+    (config) => ({ command: 'uv', args: ['run', 'mcp-server-home-assistant', '-v', '-v'], env: { HOME_ASSISTANT_WEB_SOCKET_URL: config.homeAssistantWebSocketUrl, HOME_ASSISTANT_API_TOKEN: config.homeAssistantApiToken } })
