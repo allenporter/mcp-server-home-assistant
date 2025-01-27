@@ -1,5 +1,7 @@
 # mcp-server-home-assistant
 
+[![smithery badge](https://smithery.ai/badge/mcp-server-home-assistant)](https://smithery.ai/server/mcp-server-home-assistant)
+
 A Model Context Protocol Server for Home Assistant. See [Model Context Protocol](https://modelcontextprotocol.io/)
 for context.
 
